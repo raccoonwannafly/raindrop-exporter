@@ -374,7 +374,7 @@ const App: React.FC = () => {
 
       {/* Buy Me A Coffee Fixed Button */}
       <a 
-        href="https://buymeacoffee.com" 
+        href="https://buymeacoffee.com/raccoonwannafly" 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-gray-900 rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
