@@ -4,7 +4,8 @@ Web application to export your Raindrop.io collections and bookmarks into variou
 
 Live at: https://raindrop-exporter.vercel.app/
 
-<img width="1266" height="638" alt="image" src="https://github.com/user-attachments/assets/c1856291-0796-4d3f-87c1-cef070cf3d86" />
+<img width="1867" height="918" alt="image" src="https://github.com/user-attachments/assets/88a9c137-d32d-4ef1-a161-578948d7c55b" />
+
 
 
 ## Features
