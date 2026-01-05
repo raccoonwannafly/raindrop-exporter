@@ -1,6 +1,6 @@
 # Raindrop Exporter
 
-Web application to export your Raindrop.io collections and bookmarks into various formats (JSON, HTML, CSV, XML).
+Web application to export your specified Raindrop.io collections and bookmarks into various formats (JSON, HTML, CSV, XML), without having to wait for full on backup
 
 Live at: https://raindrop-exporter.vercel.app/
 
