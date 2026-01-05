@@ -1,9 +1,7 @@
 # Raindrop Exporter
-
-A clean, modern web application to export your Raindrop.io collections and bookmarks into various formats (JSON, HTML, CSV, XML).
+Web application to export your Raindrop.io collections and bookmarks into various formats (JSON, HTML, CSV, XML).
 
 ## Features
-
 - **Selective Export**: Choose specific collections or individual bookmarks to export.
 - **Multiple Formats**: Export to Netscape HTML (for browser import), JSON, CSV, and XML.
 - **Dark Mode**: Fully responsive UI with dark/light mode support.
