@@ -188,70 +188,45 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto w-full p-6">
-        
-        {/* Step 1: Token Input */}
-        {step === 1 && (
-          <div className="max-w-md mx-auto mt-24">
-            <div className="text-center mb-8">
-                <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">Connect your account</h2>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Enter your test access token from Raindrop.io settings.
-                </p>
-            </div>
-            
-            <form onSubmit={handleTokenSubmit} className="space-y-4">
-              <div className="relative">
-                <input 
-                  type="password" 
-                  value={token}
-                  onChange={(e) => setToken(e.target.value)}
-                  placeholder="eyJhbGciOiJIUzI1NiIsIn..."
-                  className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-500 focus:border-transparent focus:outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 dark:text-white"
-                  required
-                />
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 h-full">
+
+          {/* Instructions / Sidebar */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="sticky top-10">
               
-              {status.error && (
-                <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-xs bg-red-50 dark:bg-red-900/20 p-3 rounded-md border border-red-100 dark:border-red-900/30">
-                  <Icons.Error size={14} />
-                  {status.error}
+              {/* Instructions Panel - Visible in Step 1 & 2 */}
+              {step < 3 && (
+                <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-5 space-y-4 mb-8">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                    <Icons.Info size={16} className="text-blue-500" />
+                    How to Export
+                  </h3>
+                  <ol className="text-sm text-gray-600 dark:text-gray-400 space-y-3 list-decimal list-inside marker:text-gray-400 dark:marker:text-gray-500">
+                    <li className={step > 1 ? "opacity-50 line-through" : ""}>
+                      Get a <a href="https://app.raindrop.io/settings/integrations" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">Test Token</a> from your Raindrop settings.
+                    </li>
+                    <li className={step > 1 ? "opacity-50 line-through" : ""}>
+                      Enter the token to connect your account.
+                    </li>
+                    <li>Select the collections you want to export.</li>
+                    <li>Click Fetch to retrieve your bookmarks and choose your format.</li>
+                  </ol>
                 </div>
               )}
 
-              <button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-              >
-                {isLoading ? <Icons.Loader className="animate-spin" size={16} /> : "Continue"}
-              </button>
-            </form>
-            
-            <div className="mt-8 text-center">
-                 <a href="https://app.raindrop.io/settings/integrations" target="_blank" className="text-xs text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 border-b border-gray-200 dark:border-gray-800 hover:border-gray-900 dark:hover:border-white pb-0.5 transition-all">
-                    Where do I find my token?
-                 </a>
-            </div>
-          </div>
-        )}
-
-        {/* Step 2 & 3: Workspace */}
-        {step >= 2 && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 h-full">
-            
-            {/* Sidebar Controls */}
-            <div className="lg:col-span-4 space-y-8">
-              <div className="sticky top-10">
-                <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Export</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        {step === 2 
-                            ? 'Select collections to fetch.' 
-                            : status.isComplete 
-                                ? 'Refine your selection before downloading.' 
-                                : 'Fetching your bookmarks...'}
-                    </p>
-                </div>
+              {/* Step 2 & 3: Sidebar Controls */}
+              {step >= 2 && (
+                <div className="space-y-6">
+                  <div className="mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Export</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {step === 2
+                              ? 'Select collections to fetch.'
+                              : status.isComplete
+                                  ? 'Refine your selection before downloading.'
+                                  : 'Fetching your bookmarks...'}
+                      </p>
+                  </div>
                 
                 {step === 2 && (
                   <button 
@@ -334,11 +309,54 @@ const App: React.FC = () => {
                     )}
                   </div>
                 )}
-              </div>
+                </div>
+              )}
             </div>
+          </div>
+
+          {/* Right Column: Dynamic Content based on Step */}
+          <div className="lg:col-span-8">
+            {step === 1 && (
+              <div className="max-w-md mx-auto mt-24">
+                <div className="text-center mb-8">
+                    <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">Connect your account</h2>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    Enter your test access token from Raindrop.io settings.
+                    </p>
+                </div>
+
+                <form onSubmit={handleTokenSubmit} className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="password"
+                      value={token}
+                      onChange={(e) => setToken(e.target.value)}
+                      placeholder="eyJhbGciOiJIUzI1NiIsIn..."
+                      className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-500 focus:border-transparent focus:outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 dark:text-white"
+                      required
+                    />
+                  </div>
+
+                  {status.error && (
+                    <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-xs bg-red-50 dark:bg-red-900/20 p-3 rounded-md border border-red-100 dark:border-red-900/30">
+                      <Icons.Error size={14} />
+                      {status.error}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                  >
+                    {isLoading ? <Icons.Loader className="animate-spin" size={16} /> : "Continue"}
+                  </button>
+                </form>
+              </div>
+            )}
 
             {/* Tree Preview */}
-            <div className="lg:col-span-8">
+            {step >= 2 && (
                <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-gray-900 transition-colors">
                  <div className="bg-gray-50 dark:bg-gray-900/50 px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
                    <div className="flex items-center gap-3">
@@ -366,10 +384,9 @@ const App: React.FC = () => {
                    )}
                  </div>
                </div>
-            </div>
-
+            )}
           </div>
-        )}
+        </div>
       </main>
 
       {/* Buy Me A Coffee Fixed Button */}
