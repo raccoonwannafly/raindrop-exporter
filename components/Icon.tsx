@@ -14,7 +14,8 @@ import {
   Moon,
   Coffee,
   FileSpreadsheet,
-  FileCode
+  FileCode,
+  Info
 } from 'lucide-react';
 
 export const Icons = {
@@ -32,5 +33,6 @@ export const Icons = {
   Moon,
   Coffee,
   FileSpreadsheet,
-  FileCode
+  FileCode,
+  Info
 };
